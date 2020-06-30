@@ -1,0 +1,103 @@
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../../../assets/img/background1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+#overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba($color: #000000, $alpha: 0.6);
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+#logo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(#00ffff, 0.7));
+  filter: drop-shadow(3px 3px 2px rgba(#00ffff, 0.7));
+}
+g {
+  stroke-width: 5;
+  animation: fillLine 1s ease forwards 3s;
+}
+#logo path:nth-child(1) {
+  stroke-dasharray: 2100px;
+  stroke-dashoffset: 2100px;
+  animation: lineanime 4s ease forwards;
+
+  text-shadow: 0 0 20px #00ffff;
+}
+#logo path:nth-child(2) {
+  stroke-dasharray: 500px;
+  stroke-dashoffset: 500px;
+  animation: lineanime 4s ease forwards 0.3s;
+}
+#logo path:nth-child(3) {
+  stroke-dasharray: 750px;
+  stroke-dashoffset: 750px;
+  animation: lineanime 4s ease forwards 0.6s;
+}
+#logo path:nth-child(4) {
+  stroke-dasharray: 1100px;
+  stroke-dashoffset: 1100px;
+  animation: lineanime 4s ease forwards 0.9s;
+}
+#logo path:nth-child(5) {
+  stroke-dasharray: 500px;
+  stroke-dashoffset: 500px;
+  animation: lineanime 4s ease forwards 1.2s;
+}
+
+@keyframes lineanime {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fillLine {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: rgba($color: #3c3b3f, $alpha: 0.6);
+  }
+}
+
+#btns {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 1rem;
+  div {
+    font-size: 2rem;
+    border: 3px white solid;
+    padding: 1.5rem 10rem;
+    margin-bottom: 0.3rem;
+    transition: all 0.5s ease-out;
+    &:hover {
+      padding: 0.5rem 5rem;
+      background-color: #203a43;
+      a {
+        color: black;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #3c3b3f;
+    }
+  }
+}
