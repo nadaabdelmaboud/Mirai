@@ -3,7 +3,7 @@
   height="150"
   viewBox="0 0 714.4 298.4"
   xmlns="http://www.w3.org/2000/svg"
-  id="logoReg"
+  id="logoLogin"
 >
   <g
     id="svgGroup"
@@ -42,12 +42,7 @@
     />
   </g>
 </svg>
-<form id="form" (submit)="RegisterUser()">
-  <div class="field">
-    <div class="overlay"></div>
-    <label>Username</label>
-    <input type="text" name="userName" [(ngModel)]="userName" />
-  </div>
+<form id="form" (submit)="LoginUser()">
   <div class="field">
     <div class="overlay"></div>
     <label>Email</label>
@@ -58,10 +53,6 @@
     <label>Password</label>
     <input type="password" name="password" [(ngModel)]="password" />
   </div>
-  <div class="field">
-    <div class="overlay"></div>
-    <label>Blog Name</label>
-    <input type="text" name="blogName" [(ngModel)]="blogName" />
-  </div>
-  <input id="submit" type="submit" value="Register" />
+
+  <input id="submit" type="submit" value="Login" />
 </form>

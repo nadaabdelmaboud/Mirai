@@ -44,16 +44,19 @@
   </g>
 </svg>
 <div id="btns">
-  <div>
-    <a [routerLink]="['/register']">Register</a>
+  <div *ngIf="!authService.isLogged()" (click)="navigateRegister()">
+    <a>Register</a>
   </div>
-  <div>
-    <a href="#">Login</a>
+  <div *ngIf="!authService.isLogged()" (click)="navigateLogin()">
+    <a>Login</a>
   </div>
-  <div style="visibility: hidden;">
-    <a href="#">My Blog</a>
+  <div *ngIf="authService.isLogged()" (click)="navigateBlog()">
+    <a>My Blog</a>
   </div>
-  <div style="visibility: hidden;">
-    <a href="#">Profile</a>
+  <div *ngIf="authService.isLogged()" (click)="navigateProfile()">
+    <a>Profile</a>
+  </div>
+  <div *ngIf="authService.isLogged()" (click)="Logout()">
+    <a>Logout</a>
   </div>
 </div>
