@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     this.AuthService.userLogin(user).subscribe((data) => {
       this.login = data;
       if (this.login.success) {
-        console.log(this.login);
         this.AuthService.setLocalStorage(this.login.token, this.login.user);
+        this.router.navigate(['']);
       } else {
         console.log('cant login');
       }

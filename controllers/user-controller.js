@@ -23,5 +23,19 @@ const User = {
     if (!checkPass) return false;
     return user;
   },
+  uploadProfileImage: async function (userId, imageId) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    user.progileImage = imageId;
+    await user.save();
+    return true;
+  },
+  uploadCoverImage: async function (userId, imageId) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    user.coverImage = imageId;
+    await user.save();
+    return true;
+  },
 };
 module.exports = User;

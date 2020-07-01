@@ -15,6 +15,8 @@ function dbConnection() {
     });
     mongoose.connection
       .once("open", () => {
+        gfs = Grid(mongoose.connection.db, mongoose.mongo);
+        gfs.collection("images");
         console.log("connection is made   ", process.env.CONNECTION_STRING);
       })
       .on("error", function (error) {

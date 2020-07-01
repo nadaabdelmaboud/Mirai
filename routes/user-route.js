@@ -3,7 +3,6 @@ const auth = require("../middlewares/auth");
 const bcrypt = require("bcryptjs");
 const User = require("../controllers/user-controller");
 const jwt = require("jsonwebtoken");
-const { token } = require("morgan");
 // user sign up
 router.post("/register", async (req, res) => {
   userName = req.body.userName;
@@ -22,12 +21,50 @@ router.post("/login", async (req, res) => {
   if (!user) {
     return res.status(400).send({ success: false });
   }
-  let token = await jwt.sign({ id: user._id }, process.env.jwtsecret, {
+  let token = await jwt.sign({ _id: user._id }, process.env.jwtsecret, {
     expiresIn: "12312432424234",
   });
   return res.status(200).send({ success: true, token: token, user: user });
 });
-
-//user profile
+router.post("/me/profileImage", auth, async (req, res) => {
+  let imageId = req.query.imageId;
+  let userId = req.user._id;
+  if (!userId || !imageId) {
+    return res.status(400).send({ success: false });
+  }
+  let profileImage = await User.uploadProfileImage(userId, imageId);
+  if (profileImage) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
+router.post("/me/coverImage", auth, async (req, res) => {
+  let imageId = req.query.imageId;
+  let userId = req.user._id;
+  if (!userId || !imageId) {
+    return res.status(400).send({ success: false });
+  }
+  let coverImage = await User.uploadCoverImage(userId, imageId);
+  if (coverImage) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
+router.get("/me/coverImage", auth, async (req, res) => {
+  let imageId = req.query.imageId;
+  let userId = req.user._id;
+  if (!userId || !imageId) {
+    return res.status(400).send({ success: false });
+  }
+  let coverImage = await User.uploadCoverImage(userId, imageId);
+  if (coverImage) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
+router.get("/me/coverImage", auth, async (req, res) => {
+  let imageId = req.query.imageId;
+  let userId = req.user._id;
+  if (!userId || !imageId) {
+    return res.status(400).send({ success: false });
+  }
+  let coverImage = await User.uploadCoverImage(userId, imageId);
+  if (coverImage) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
 
 module.exports = router;

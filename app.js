@@ -7,7 +7,8 @@ const bodyparser = require("body-parser");
 const logger = require("morgan");
 require("./controllers/db-controller")();
 const user = require("./routes/user-route");
-
+const post = require("./routes/post-router");
+const image = require("./routes/image-route");
 const app = express();
 
 app.use(cors());
@@ -18,6 +19,8 @@ app.use(logger("dev"));
 app.use(methodOverride());
 
 app.use("/api", user);
+app.use("/api", post);
+app.use("/api", image);
 
 const API_PORT = process.env.PORT || 3000;
 

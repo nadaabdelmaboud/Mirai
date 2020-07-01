@@ -7,10 +7,25 @@ const User = new Schema({
   password: String,
   country: String,
   birthDate: Date,
+  progileImage: mongoose.Schema.Types.ObjectId,
+  coverImage: mongoose.Schema.Types.ObjectId,
   about: String,
   gender: String,
   profileImage: mongoose.Schema.Types.ObjectId,
-  posts: [],
+  posts: [
+    {
+      isImage: Boolean,
+      imageId: mongoose.Schema.Types.ObjectId,
+      postText: String,
+      postDate: Date,
+      comments: [
+        {
+          commentText: String,
+          commentDate: Date,
+        },
+      ],
+    },
+  ],
   createdAt: Date,
 });
 
