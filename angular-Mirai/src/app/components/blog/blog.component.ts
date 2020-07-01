@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { BlogService } from '../../services/blog.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -10,7 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent implements OnInit {
-  constructor() {}
+  blogName: any;
+  blog: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private BlogService: BlogService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.blogName = this.activatedRoute.snapshot.paramMap.get('blogName');
+    this.BlogService.getUserBlog(this.blogName).subscribe((data) => {
+      this.blog = data;
+      if (this.blog.success) {
+        this.blog = this.blog.blog;
+        console.log(this.blog);
+      } else {
+        console.log('blog not found');
+      }
+    });
+  }
 }

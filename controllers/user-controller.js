@@ -26,7 +26,7 @@ const User = {
   uploadProfileImage: async function (userId, imageId) {
     let user = await UserModel.findById(userId);
     if (!user) return false;
-    user.progileImage = imageId;
+    user.profileImage = imageId;
     await user.save();
     return true;
   },
@@ -36,6 +36,18 @@ const User = {
     user.coverImage = imageId;
     await user.save();
     return true;
+  },
+  getBlog: async function (blogName) {
+    let user = await UserModel.findOne({ blogName: blogName });
+    if (!user) return false;
+    user = {
+      userName: user.userName,
+      blogName: user.blogName,
+      coverImage: user.coverImage,
+      profileImage: user.profileImage,
+      posts: user.posts,
+    };
+    return user;
   },
 };
 module.exports = User;

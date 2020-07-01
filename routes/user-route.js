@@ -67,4 +67,11 @@ router.get("/me/coverImage", auth, async (req, res) => {
   else return res.status(400).send({ success: false });
 });
 
+router.get("/:blogName", async (req, res) => {
+  let blogName = req.params.blogName;
+  let blog = await User.getBlog(blogName);
+  if (blog) return res.status(200).send({ success: true, blog: blog });
+  else return res.status(400).send({ success: false });
+});
+
 module.exports = router;

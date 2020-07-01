@@ -23,7 +23,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'blog',
+    path: 'blog/:blogName',
     component: BlogComponent,
     canActivate: [AuthGuard],
   },
