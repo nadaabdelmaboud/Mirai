@@ -54,11 +54,28 @@
 <div class="content">
   <div class="postcard">
     <div class="post">
-      <div *ngIf="isImage" class="postImage">
+      <form>
+        <textarea
+          name="comment"
+          id="comment"
+          rows="10"
+          tabindex="4"
+          required="required"
+        ></textarea>
+        <br />
+        <input
+          type="file"
+          name="file"
+          width="30px"
+          id="file"
+          class="inputfile"
+          (change)="handleFileInput($event.target.files)"
+        />
+        <label for="file">Choose an Image</label>
+      </form>
+      <input id="submit" type="submit" value="POST" />
+      <div [ngStyle]="imageStyle" class="postImage">
         <img src="{{ imageSrc }}" />
-      </div>
-      <div class="postText">
-        <p>HELLO</p>
       </div>
     </div>
   </div>

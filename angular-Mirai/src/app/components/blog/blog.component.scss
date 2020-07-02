@@ -102,6 +102,8 @@ main {
         overflow-wrap: break-word;
         position: absolute;
         margin-left: 5px;
+        overflow-y: auto;
+        padding-right: 20px;
         font-weight: 100px;
         text-align: justify;
         font-size: 25px;
@@ -131,18 +133,19 @@ main {
     }
     textarea {
       background-image: linear-gradient(#3e5151, #decba4);
+      border: 3px gray solid;
       position: absolute;
       width: 80%;
       top: 0;
-      border: 3px gray solid;
+
       height: 100%;
       float: right;
       left: 0;
       font-size: 20px;
       font-weight: 200;
+      text-indent: 10px;
       bottom: 0;
       padding-top: 2px;
-      text-indent: 10px;
     }
     input {
       position: absolute;

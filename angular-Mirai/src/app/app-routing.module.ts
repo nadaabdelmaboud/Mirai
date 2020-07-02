@@ -25,7 +25,6 @@ const routes: Routes = [
   {
     path: 'blog/:blogName',
     component: BlogComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'profile',
