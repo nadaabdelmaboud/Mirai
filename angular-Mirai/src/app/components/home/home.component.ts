@@ -10,10 +10,16 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
+  blogname: any;
   constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    console.log(this.authService.isLogged());
+    if (!localStorage.getItem('qoo')) {
+      localStorage.setItem('qoo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('qoo');
+    }
   }
   navigateRegister() {
     this.router.navigate(['/register']);
@@ -25,7 +31,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
   navigateBlog() {
-    this.router.navigate(['/blog']);
+    this.authService.userBlogName().subscribe((data) => {
+      this.blogname = data;
+      this.blogname = this.blogname.blogname;
+      this.router.navigate(['/blog/' + this.blogname]);
+    });
   }
   Logout() {
     this.authService.logout();

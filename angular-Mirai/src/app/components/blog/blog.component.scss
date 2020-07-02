@@ -1,18 +1,165 @@
-body {
+$visible: false;
+* {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+#bodyblog {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background-image: url("../../../assets/img/background1.jpg");
+  overflow-x: hidden;
+  background-image: linear-gradient(to right, #000000, #434343);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
-.overlay {
+
+.card {
+  position: relative;
+  margin: 10px;
+  text-align: center;
+  font-family: arial;
+  float: left;
+  top: 50%;
+  width: 100px;
+  height: 120px;
+  border: none;
+  left: 20px;
+  transform: translate(-25%, -15%);
+  max-zoom: 0.3;
+  z-index: 2;
+  img {
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    max-zoom: 0.3;
+  }
+  label {
+    color: grey;
+    font-size: 40px;
+    font-family: serif;
+    font-weight: 300;
+    display: block;
+  }
+}
+main {
   position: absolute;
-  top: 0;
-  right: 0;
-  background: rgba($color: #000000, $alpha: 0.6);
-  z-index: -1;
-  width: 100%;
+  margin: auto;
+  align-items: center;
+  transform: translate(20%);
+  width: 60%;
   height: 100%;
+  margin-bottom: 10px;
+}
+
+.postcard {
+  box-shadow: inset 0 -3em 3em rgba(223, 208, 208, 0.1),
+    0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(206, 174, 174, 0.3);
+  background-image: linear-gradient(#3c3b3f, #605c3c);
+  margin-top: 30px;
+  margin-bottom: 20px;
+  position: relative;
+  border: none;
+  display: block;
+  left: 0px;
+  transform: translate(-5%);
+  float: left;
+  width: 70%;
+  min-height: 60vh;
+  .post {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    .postImage {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      float: left;
+      display: inline-block;
+      img {
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        float: left;
+      }
+    }
+    .postText {
+      position: relative;
+      display: inline;
+      float: left;
+      margin-top: 10px;
+      left: 0;
+      width: 45%;
+      padding-right: 5px;
+      height: 100%;
+      color: white;
+      p {
+        overflow-wrap: break-word;
+        position: absolute;
+        margin-left: 5px;
+        font-weight: 100px;
+        text-align: justify;
+        font-size: 25px;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .leaveComment {
+    position: absolute;
+    top: 83%;
+    width: 100%;
+    height: 15%;
+    float: left;
+    form {
+      margin-left: 3px;
+      margin-right: 3px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    label {
+      position: absolute;
+      top: 0;
+    }
+    textarea {
+      background-image: linear-gradient(#3e5151, #decba4);
+      position: absolute;
+      width: 80%;
+      top: 0;
+      border: 3px gray solid;
+      height: 100%;
+      float: right;
+      left: 0;
+      font-size: 20px;
+      font-weight: 200;
+      bottom: 0;
+      padding-top: 2px;
+      text-indent: 10px;
+    }
+    input {
+      position: absolute;
+      width: 15%;
+      height: 100%;
+      right: 9px;
+      bottom: 0;
+      color: #d0c8e6;
+      background-color: inherit;
+      font-weight: 400;
+      text-align: center;
+      padding: 0.1rem 1rem;
+      transition: all 0.5s ease-out;
+      &:hover {
+        background-color: #203a43;
+        color: black;
+      }
+    }
+  }
 }

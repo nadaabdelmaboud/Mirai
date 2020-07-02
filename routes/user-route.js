@@ -46,7 +46,7 @@ router.post("/me/coverImage", auth, async (req, res) => {
   if (coverImage) return res.status(200).send({ success: true });
   else return res.status(400).send({ success: false });
 });
-router.get("/me/coverImage", auth, async (req, res) => {
+router.get("/me/profileImage", auth, async (req, res) => {
   let imageId = req.query.imageId;
   let userId = req.user._id;
   if (!userId || !imageId) {
@@ -66,7 +66,7 @@ router.get("/me/coverImage", auth, async (req, res) => {
   if (coverImage) return res.status(200).send({ success: true });
   else return res.status(400).send({ success: false });
 });
-
+//get user blog
 router.get("/:blogName", async (req, res) => {
   let blogName = req.params.blogName;
   let blog = await User.getBlog(blogName);
@@ -74,4 +74,13 @@ router.get("/:blogName", async (req, res) => {
   else return res.status(400).send({ success: false });
 });
 
+//get current user blogname
+router.get("/user/blogname", auth, async (req, res) => {
+  console.log(req.headers);
+  let userId = req.user._id;
+  let blogname = await User.getBlogName(userId);
+  if (blogname)
+    return res.status(200).send({ success: true, blogname: blogname });
+  else return res.status(400).send({ success: false });
+});
 module.exports = router;

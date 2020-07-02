@@ -1,11 +1,14 @@
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-image: url("../../../assets/img/background1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+.wrapper {
+  margin: 0 auto;
+  max-width: 1000px;
 }
 .overlay {
   position: absolute;
@@ -19,8 +22,8 @@ body {
 
 #form {
   position: absolute;
+  height: 40%;
   left: 50%;
-  bottom: 50%;
   transform: translate(-50%, 50%);
   display: flex;
   flex-wrap: wrap;
@@ -34,11 +37,11 @@ body {
       0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(206, 174, 174, 0.3);
     position: relative;
     width: 100%;
-    height: 80px;
+    height: 40px;
     font-size: 2rem;
     border: 3px white solid;
     padding: 1.5rem 10rem;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     transition: all 0.5s ease-out;
     align-items: center;
     &:hover {
@@ -50,6 +53,7 @@ body {
     label {
       position: absolute;
       left: 0;
+      font-size: 20px;
       padding: 10px;
       color: lighten($color: #3c3b3f, $amount: 20);
       font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
@@ -58,12 +62,12 @@ body {
     input {
       position: absolute;
       margin-left: 100px;
-      margin-top: 10px;
+      margin-top: 5px;
       width: 60%;
-      height: 30%;
+      height: 20%;
       padding-right: 10px;
       padding-left: 10px;
-      font-size: 30px;
+      font-size: 15px;
       font-weight: 200;
     }
   }
@@ -75,7 +79,7 @@ body {
   left: 50%;
   width: 300px;
   height: 70px;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, 100%);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -89,7 +93,6 @@ body {
   background-color: inherit;
   font-size: 30px;
   font-weight: 200;
-  margin-bottom: 0.3rem;
   padding: 1.5rem 10rem;
   text-align: center;
   transition: all 0.5s ease-out;

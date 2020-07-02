@@ -3,6 +3,7 @@ const auth = require("../middlewares/auth");
 const uploadImage = require("../middlewares/image-upload");
 const mongoose = require("mongoose");
 const Image = require("../controllers/image-controller");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 router.post(
   "/me/uploadImage",
@@ -16,8 +17,11 @@ router.post(
     }
   }
 );
-router.get("/image", async (req, res) => {
+router.get("/me/image", async (req, res) => {
   let id = req.query.id;
+  console.log(id);
+  if (!id || id == undefined) return res.status(404).send("no images");
+  if (!ObjectId.isValid(id)) return res.status(404).send("no images");
   var ObjectID = mongoose.Types.ObjectId(id);
   gfs.files.find({ _id: ObjectID }).toArray((err, files) => {
     if (!files || files.length == 0) {

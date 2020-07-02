@@ -13,6 +13,19 @@ export class AuthService {
   userRegister(user) {
     return this.http.post('http://localhost:3000/api/register', user);
   }
+  userBlogName() {
+    this.getLocalStorage();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authToken,
+      }),
+    };
+    return this.http.get(
+      'http://localhost:3000/api/user/blogname',
+      httpOptions
+    );
+  }
   userLogin(user) {
     return this.http.post('http://localhost:3000/api/login', user);
   }

@@ -49,5 +49,11 @@ const User = {
     };
     return user;
   },
+  getBlogName: async function (userId) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    let blogname = user.blogName;
+    return blogname;
+  },
 };
 module.exports = User;
