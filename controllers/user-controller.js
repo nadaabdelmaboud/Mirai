@@ -49,6 +49,18 @@ const User = {
     };
     return user;
   },
+  getMyBlog: async function (userId) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    user = {
+      userName: user.userName,
+      blogName: user.blogName,
+      coverImage: user.coverImage,
+      profileImage: user.profileImage,
+      posts: user.posts,
+    };
+    return user;
+  },
   getBlogName: async function (userId) {
     let user = await UserModel.findById(userId);
     if (!user) return false;

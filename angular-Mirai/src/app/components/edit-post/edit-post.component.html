@@ -45,14 +45,14 @@
       />
     </g>
   </svg>
-  <a class="active" routerLink="/profile/createPost">Create Post</a>
-  <a routerLink="/profile/editPosts">Edit Post</a>
+  <a routerLink="/profile/createPost">Create Post</a>
+  <a class="active" routerLink="/profile/editPosts">Edit Post</a>
   <a routerLink="/profile/editProfile">Edit Profile Info</a>
   <a routerLink="/profile/comments">See Comments</a>
 </div>
 
 <div class="content">
-  <div class="postcard">
+  <div *ngFor="let i of indecies" class="postcard">
     <div class="post">
       <form>
         <textarea
@@ -61,7 +61,8 @@
           rows="10"
           tabindex="4"
           required="required"
-          [(ngModel)]="postText"
+          value="{{ posts[i].postText }}"
+          [(ngModel)]="newPosts[i].postText"
         ></textarea>
         <br />
         <input
@@ -70,13 +71,20 @@
           width="30px"
           id="file"
           class="inputfile"
-          (change)="handleFileInput($event.target.files)"
+          (change)="handleFileInput($event.target.files, i)"
         />
         <label for="file">Choose an Image</label>
+        <input
+          [ngStyle]="styles[i]"
+          type="button"
+          value="Clear Image"
+          id="clear"
+          (click)="clearImage(i)"
+        />
       </form>
-      <input id="submit" type="submit" value="POST" (click)="createPost()" />
-      <div [ngStyle]="imageStyle" class="postImage">
-        <img src="{{ imageSrc }}" />
+      <input id="submit" type="submit" value="EDIT" (click)="editPost(i)" />
+      <div [ngStyle]="styles[i]" class="postImage">
+        <img src="{{ posts[i].imageId }}" />
       </div>
     </div>
   </div>

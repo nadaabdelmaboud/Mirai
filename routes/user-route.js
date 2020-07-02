@@ -73,7 +73,12 @@ router.get("/:blogName", async (req, res) => {
   if (blog) return res.status(200).send({ success: true, blog: blog });
   else return res.status(400).send({ success: false });
 });
-
+router.get("/me/blog", auth, async (req, res) => {
+  let userId = req.user._id;
+  let blog = await User.getMyBlog(userId);
+  if (blog) return res.status(200).send({ success: true, blog: blog });
+  else return res.status(400).send({ success: false });
+});
 //get current user blogname
 router.get("/user/blogname", auth, async (req, res) => {
   console.log(req.headers);
@@ -83,4 +88,5 @@ router.get("/user/blogname", auth, async (req, res) => {
     return res.status(200).send({ success: true, blogname: blogname });
   else return res.status(400).send({ success: false });
 });
+
 module.exports = router;

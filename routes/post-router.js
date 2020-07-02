@@ -6,9 +6,9 @@ const jwt = require("jsonwebtoken");
 const Post = require("../controllers/post-controller");
 // user add post
 router.post("/me/post", auth, async (req, res) => {
-  isImage = req.body.isImage;
-  imageId = req.body.imageId;
-  postText = req.body.postText;
+  isImage = req.body.newPost.isImage;
+  imageId = req.body.newPost.imageId;
+  postText = req.body.newPost.postText;
   userId = req.user._id;
   let createdPost = await Post.createPost(userId, isImage, imageId, postText);
   if (createdPost) return res.status(200).send({ success: true });
@@ -26,6 +26,13 @@ router.get("/me/posts", auth, async (req, res) => {
 // user get user post
 router.get("/me/post", auth, async (req, res) => {});
 // user update post
-router.put("/me/post", auth, async (req, res) => {});
+router.put("/me/post", auth, async (req, res) => {
+  let newPost = req.body.newPost;
+  let index = Number(req.body.index);
+  let userId = req.user._id;
+  let edit = await Post.editPost(userId, index, newPost);
+  if (edit) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
 
 module.exports = router;

@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   navigateProfile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/profile/createPost']);
   }
   navigateBlog() {
     this.authService.userBlogName().subscribe((data) => {

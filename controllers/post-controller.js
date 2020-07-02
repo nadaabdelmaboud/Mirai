@@ -21,5 +21,14 @@ const Post = {
     let posts = user.posts;
     return posts;
   },
+  editPost: async function (userId, index, newPost) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    user.posts[index].imageId = newPost.imageId;
+    user.posts[index].isImage = newPost.isImage;
+    user.posts[index].postText = newPost.postText;
+    await user.save();
+    return true;
+  },
 };
 module.exports = Post;

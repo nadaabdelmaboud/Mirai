@@ -21,4 +21,32 @@ export class ProfileService {
 
     return this.httpClient.post(endpoint, formData, httpOptions);
   }
+  editPost(newPost, index) {
+    this.authToken = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authToken,
+      }),
+    };
+    return this.httpClient.put(
+      'http://localhost:3000/api/me/post',
+      { newPost: newPost, index: index },
+      httpOptions
+    );
+  }
+  createPost(newPost) {
+    this.authToken = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authToken,
+      }),
+    };
+    return this.httpClient.post(
+      'http://localhost:3000/api/me/post',
+      { newPost: newPost },
+      httpOptions
+    );
+  }
 }

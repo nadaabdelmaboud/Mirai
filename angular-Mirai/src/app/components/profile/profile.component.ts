@@ -14,9 +14,12 @@ import { NONE_TYPE } from '@angular/compiler';
 export class ProfileComponent implements OnInit {
   imageSrc: any;
   isImage: Boolean;
+  imageId: any;
+  postText: String;
   fileToUpload: File = null;
   URL: any;
   imageStyle: any;
+
   constructor(private router: Router, private ProfileService: ProfileService) {}
 
   ngOnInit(): void {
@@ -42,12 +45,35 @@ export class ProfileComponent implements OnInit {
       (data) => {
         this.imageSrc = data;
         this.URL = 'http://localhost:3000/api/me/image?id=';
+        this.imageId = this.imageSrc.imageId;
         this.imageSrc = this.URL + this.imageSrc.imageId;
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+  createPost() {
+    let check;
+    if (this.imageStyle.display == 'none') {
+      check = false;
+    } else {
+      check = true;
+    }
+    const newPost = {
+      isImage: check,
+      imageId: this.imageId,
+      postText: this.postText,
+    };
+    this.ProfileService.createPost(newPost).subscribe((data) => {
+      check;
+      check = data;
+      if (check.success) {
+        location.reload();
+      } else {
+        console.log('failed');
+      }
+    });
   }
   navigateHome() {
     console.log('asas');
