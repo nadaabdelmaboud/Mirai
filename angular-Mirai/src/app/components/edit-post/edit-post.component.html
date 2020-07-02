@@ -61,8 +61,8 @@
           rows="10"
           tabindex="4"
           required="required"
-          value="{{ posts[i].postText }}"
-          [(ngModel)]="newPosts[i].postText"
+          value="{{ posts[indecies[i]].postText }}"
+          [(ngModel)]="newPosts[indecies[i]].postText"
         ></textarea>
         <br />
         <input
@@ -70,21 +70,25 @@
           name="file"
           width="30px"
           id="file"
-          class="inputfile"
-          (change)="handleFileInput($event.target.files, i)"
+          class="custom-file-input"
+          (change)="handleInput($event.target.files, indecies[i])"
         />
-        <label for="file">Choose an Image</label>
         <input
-          [ngStyle]="styles[i]"
+          [ngStyle]="styles[indecies[i]]"
           type="button"
           value="Clear Image"
           id="clear"
-          (click)="clearImage(i)"
+          (click)="clearImage(indecies[i])"
         />
       </form>
-      <input id="submit" type="submit" value="EDIT" (click)="editPost(i)" />
-      <div [ngStyle]="styles[i]" class="postImage">
-        <img src="{{ posts[i].imageId }}" />
+      <input
+        id="submit"
+        type="submit"
+        value="EDIT"
+        (click)="editPost(indecies[i])"
+      />
+      <div [ngStyle]="styles[indecies[i]]" class="postImage">
+        <img src="{{ posts[indecies[i]].imageId }}" />
       </div>
     </div>
   </div>

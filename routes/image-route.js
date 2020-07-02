@@ -17,6 +17,18 @@ router.post(
     }
   }
 );
+router.post(
+  "/me/uploadprofileImage",
+  auth,
+  uploadImage.single("profileImage"),
+  async (req, res) => {
+    if (req.file) {
+      return res.status(200).send({ imageId: req.file.id });
+    } else {
+      return res.status(403).send("couldn't upload image");
+    }
+  }
+);
 router.get("/me/image", async (req, res) => {
   let id = req.query.id;
   console.log(id);

@@ -22,4 +22,18 @@ export class BlogService {
     };
     return this.http.get('http://localhost:3000/api/me/blog', httpOptions);
   }
+  comment(commentText, blogName) {
+    this.authToken = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authToken,
+      }),
+    };
+    return this.http.post(
+      'http://localhost:3000/api/me/comment',
+      { commentText: commentText, blogName: blogName },
+      httpOptions
+    );
+  }
 }

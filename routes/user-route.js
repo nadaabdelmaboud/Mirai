@@ -26,6 +26,13 @@ router.post("/login", async (req, res) => {
   });
   return res.status(200).send({ success: true, token: token, user: user });
 });
+router.put("/me/profile", auth, async (req, res) => {
+  user = req.body.user;
+  let userId = req.user._id;
+  let newUser = await User.updateUser(userId, user);
+  if (newUser) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
 router.post("/me/profileImage", auth, async (req, res) => {
   let imageId = req.query.imageId;
   let userId = req.user._id;
@@ -77,6 +84,14 @@ router.get("/me/blog", auth, async (req, res) => {
   let userId = req.user._id;
   let blog = await User.getMyBlog(userId);
   if (blog) return res.status(200).send({ success: true, blog: blog });
+  else return res.status(400).send({ success: false });
+});
+//get me
+router.get("/me/profile", auth, async (req, res) => {
+  let userId = req.user._id;
+  let user = await User.getMe(userId);
+  console.log(user);
+  if (user) return res.status(200).send({ success: true, user: user });
   else return res.status(400).send({ success: false });
 });
 //get current user blogname

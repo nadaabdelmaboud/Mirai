@@ -93,7 +93,7 @@ export class EditPostComponent implements OnInit {
     this.newPosts[index].isImage = false;
     this.newPosts[index].imageId = '';
   }
-  handleFileInput(files: FileList, index) {
+  handleInput(files: FileList, index) {
     this.fileToUpload = files.item(0);
     this.uploadFileToActivity(index);
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -16,7 +17,7 @@ export class BlogComponent implements OnInit {
   headingCss: {};
   check: Boolean;
   show: {};
-
+  commentText: String;
   styles: any;
   userName: String;
   posts: any;
@@ -25,7 +26,9 @@ export class BlogComponent implements OnInit {
   indecies: any;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private BlogService: BlogService
+    private BlogService: BlogService,
+    private AuthService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -72,5 +75,13 @@ export class BlogComponent implements OnInit {
     this.headingCss = {
       height: '100%',
     };
+  }
+  comment() {
+    let checkAuth = this.AuthService.isLogged();
+    if (checkAuth) {
+      this.BlogService.comment(this.commentText, this.blogName);
+    } else {
+      this.router.navigate(['']);
+    }
   }
 }

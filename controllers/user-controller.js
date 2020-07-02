@@ -1,5 +1,7 @@
 const UserModel = require("../models/user-model");
 const bcrypt = require("bcryptjs");
+const ObjectId = require("mongoose").Types.ObjectId;
+
 const User = {
   createUser: async function (userName, blogName, password, email) {
     const salt = await bcrypt.genSalt(10);
@@ -48,6 +50,32 @@ const User = {
       posts: user.posts,
     };
     return user;
+  },
+  getMe: async function (userId) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    user = {
+      userName: user.userName,
+      blogName: user.blogName,
+      coverImage: user.coverImage,
+      profileImage: user.profileImage,
+      posts: user.posts,
+      email: user.email,
+    };
+    return user;
+  },
+  updateUser: async function (userId, user) {
+    let usero = await UserModel.findById(userId);
+    if (!usero) return false;
+    if (user.userName) usero.userName = user.userName;
+    if (user.blogName) usero.blogName = user.blogName;
+    if (user.coverImage && ObjectId.isValid(user.coverImage))
+      usero.coverImage = user.coverImage;
+    if (user.profileImage && ObjectId.isValid(user.profileImage))
+      usero.profileImage = user.profileImage;
+    if (user.email) usero.email = user.email;
+    await usero.save();
+    return true;
   },
   getMyBlog: async function (userId) {
     let user = await UserModel.findById(userId);

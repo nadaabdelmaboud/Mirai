@@ -35,6 +35,33 @@ export class ProfileService {
       httpOptions
     );
   }
+  editProfile(user) {
+    this.authToken = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authToken,
+      }),
+    };
+    return this.httpClient.put(
+      'http://localhost:3000/api/me/profile',
+      { user: user },
+      httpOptions
+    );
+  }
+  getMe() {
+    this.authToken = localStorage.getItem('token');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: this.authToken,
+      }),
+    };
+    return this.httpClient.get(
+      'http://localhost:3000/api/me/profile',
+      httpOptions
+    );
+  }
   createPost(newPost) {
     this.authToken = localStorage.getItem('token');
     const httpOptions = {
