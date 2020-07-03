@@ -19,9 +19,7 @@ app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "public")));
 }
-app.use("*", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
+
 app.use(function (error, req, res, next) {
   res.status(500);
   res.send({ error: error.message });
@@ -37,6 +35,9 @@ const API_PORT = process.env.PORT || 8080;
 app.use(function (error, req, res, next) {
   res.status(500);
   res.send({ error: error.message });
+});
+app.use("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 app.listen(process.env.port || API_PORT, function () {
   console.log("listening for a request");
