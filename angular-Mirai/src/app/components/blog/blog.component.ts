@@ -46,7 +46,7 @@ export class BlogComponent implements OnInit {
       this.blog = data;
       if (this.blog.success) {
         this.blog = this.blog.blog;
-        this.URL = 'http://localhost:3000/api/me/image?id=';
+        this.URL = '/api/me/image?id=';
         this.profileImageUrl = this.URL + this.blog.profileImage;
         this.coverImageUrl = this.URL + this.blog.coverImage;
         this.posts = this.blog.posts;
@@ -54,8 +54,7 @@ export class BlogComponent implements OnInit {
         this.styles = [];
         this.indecies = [];
         for (var i = 0; i < this.posts.length; i++) {
-          this.posts[i].imageId =
-            'http://localhost:3000/api/me/image?id=' + this.posts[i].imageId;
+          this.posts[i].imageId = '/api/me/image?id=' + this.posts[i].imageId;
           if (!this.posts[i].isImage) {
             this.styles.push({
               image: { display: 'none' },

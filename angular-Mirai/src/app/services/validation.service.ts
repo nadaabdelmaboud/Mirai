@@ -23,13 +23,13 @@ export class ValidationService {
   }
   validateEmail(email) {
     let res: any;
-    return this.http.post('http://localhost:3000/api/me/checkMail', {
+    return this.http.post('/api/me/checkMail', {
       email: email,
     });
   }
   validateBlog(blogName) {
     let res: any;
-    return this.http.post('http://localhost:3000/api/me/checkBlog', {
+    return this.http.post('/api/me/checkBlog', {
       blogName: blogName,
     });
   }
