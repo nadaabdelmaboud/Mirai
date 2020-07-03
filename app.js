@@ -16,9 +16,7 @@ app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(logger("dev"));
-app.use(
-  express.static(path.join(__dirname, "angular-Mirai/dist/angular-Mirai"))
-);
+app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride());
 
 app.use("/api", user);
