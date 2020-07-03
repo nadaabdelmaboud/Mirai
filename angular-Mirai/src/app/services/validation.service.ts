@@ -23,7 +23,7 @@ export class ValidationService {
   }
   validateEmail(email) {
     let res: any;
-    return this.http.post('api/me/checkMail', {
+    return this.http.post('/api/me/checkMail', {
       email: email,
     });
   }
