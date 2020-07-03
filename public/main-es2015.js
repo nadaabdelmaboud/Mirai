@@ -2023,7 +2023,7 @@ class ValidationService {
     }
     validateEmail(email) {
         let res;
-        return this.http.post('/api/me/checkMail', {
+        return this.http.post('api/me/checkMail', {
             email: email,
         });
     }

@@ -3867,7 +3867,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "validateEmail",
         value: function validateEmail(email) {
           var res;
-          return this.http.post('/api/me/checkMail', {
+          return this.http.post('api/me/checkMail', {
             email: email
           });
         }
