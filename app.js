@@ -19,8 +19,10 @@ app.use(logger("dev"));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "public")));
 }
-app.get("*", (request, response) => {
-  response.sendFile(path.join(__dirname, "public", "index.html"));
+
+app.use(function (error, req, res, next) {
+  res.status(500);
+  res.send({ error: error.message });
 });
 app.use(methodOverride());
 
