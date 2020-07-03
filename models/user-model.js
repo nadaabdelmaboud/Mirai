@@ -21,6 +21,11 @@ const User = new Schema({
         {
           commentText: String,
           commentDate: Date,
+          commentter: {
+            blogName: String,
+            profileImage: mongoose.Schema.Types.ObjectId,
+            userName: String,
+          },
         },
       ],
     },

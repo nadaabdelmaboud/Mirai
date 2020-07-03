@@ -18,6 +18,7 @@ export class BlogComponent implements OnInit {
   check: Boolean;
   show: {};
   commentText: String;
+  comments: any;
   styles: any;
   userName: String;
   posts: any;
@@ -39,6 +40,7 @@ export class BlogComponent implements OnInit {
       localStorage.removeItem('foo');
     }
     this.check = false;
+    this.comments = [];
     this.blogName = this.activatedRoute.snapshot.paramMap.get('blogName');
     this.BlogService.getUserBlog(this.blogName).subscribe((data) => {
       this.blog = data;
@@ -76,10 +78,24 @@ export class BlogComponent implements OnInit {
       height: '100%',
     };
   }
-  comment() {
+  comment(i) {
     let checkAuth = this.AuthService.isLogged();
+    console.log(checkAuth);
+    i = this.posts.length - i - 1;
     if (checkAuth) {
-      this.BlogService.comment(this.commentText, this.blogName);
+      this.commentText = this.comments[i];
+      this.BlogService.comment(this.commentText, this.blogName, i).subscribe(
+        (data) => {
+          let ch: any;
+          ch = data;
+          if (ch.success) {
+            this.commentText = '';
+            this.comments[i] = '';
+          } else {
+            console.log('failed');
+          }
+        }
+      );
     } else {
       this.router.navigate(['']);
     }

@@ -30,7 +30,7 @@
       />
       <div class="card">
         <img id="profileImage" src="{{ profileImageUrl }}" />
-        <label>
+        <label dir="auto">
           {{ userName }}
         </label>
       </div>
@@ -39,26 +39,29 @@
   <main>
     <div class="postcard" *ngFor="let i of indecies">
       <div class="post">
-        <div class="postImage" [ngStyle]="styles[i].image">
-          <img src="{{ posts[i].imageId }}" />
+        <div
+          class="postImage"
+          [ngStyle]="styles[indecies.length - i - 1].image"
+        >
+          <img src="{{ posts[indecies.length - i - 1].imageId }}" />
         </div>
-        <div class="postText" [ngStyle]="styles[i].text">
-          <p>
-            {{ posts[i].postText }}
+        <div class="postText" [ngStyle]="styles[indecies.length - i - 1].text">
+          <p dir="auto">
+            {{ posts[indecies.length - i - 1].postText }}
           </p>
         </div>
       </div>
 
       <div class="leaveComment">
         <br />
-        <form class="commentform">
+        <form class="commentform" (submit)="comment(i)">
           <textarea
             name="comment"
             id="comment"
             rows="10"
             tabindex="4"
             required="required"
-            [(ngModel)]="commentText"
+            [(ngModel)]="comments[indecies.length - i - 1]"
           ></textarea>
           <input type="submit" value="Comment" />
         </form>

@@ -47,22 +47,30 @@
     <div class="field">
       <div class="overlay"></div>
       <label>Username</label>
-      <input type="text" name="userName" [(ngModel)]="userName" />
+      <input dir="auto" type="text" name="userName" [(ngModel)]="userName" />
     </div>
     <div class="field">
       <div class="overlay"></div>
       <label>Email</label>
-      <input type="text" name="email" [(ngModel)]="email" />
+      <input dir="auto" type="text" name="email" [(ngModel)]="email" />
     </div>
     <div class="field">
       <div class="overlay"></div>
       <label>Password</label>
-      <input type="password" name="password" [(ngModel)]="password" />
+      <input
+        dir="auto"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+      />
     </div>
     <div class="field">
       <div class="overlay"></div>
       <label>Blog Name</label>
-      <input type="text" name="blogName" [(ngModel)]="blogName" />
+      <input dir="auto" type="text" name="blogName" [(ngModel)]="blogName" />
+    </div>
+    <div *ngIf="iserror" class="error">
+      <p>{{ error }}</p>
     </div>
     <input id="submit" type="submit" value="Register" />
   </form>

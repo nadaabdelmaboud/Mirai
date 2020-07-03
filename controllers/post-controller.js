@@ -30,5 +30,23 @@ const Post = {
     await user.save();
     return true;
   },
+  createComment: async function (userId, blogName, index, commentText) {
+    let user = await UserModel.findById(userId);
+    if (!user) return false;
+    let blogUser = await User.getUserBlog(blogName);
+    if (!blogUser) return false;
+    console.log(blogUser);
+    blogUser.posts[index].comments.push({
+      commentText: commentText,
+      commentDate: Date.now(),
+      commentter: {
+        blogName: user.blogName,
+        profileImage: user.profileImage,
+        userName: user.userName,
+      },
+    });
+    await blogUser.save();
+    return true;
+  },
 };
 module.exports = Post;

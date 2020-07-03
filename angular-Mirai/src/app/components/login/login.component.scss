@@ -68,7 +68,28 @@ body {
     }
   }
 }
-
+.error {
+  background-color: brown;
+  font-size: 20px;
+  color: black;
+  border: 5px black solid;
+  padding: 10px;
+  font-weight: 300;
+  position: relative;
+  width: 400px;
+  height: 30px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, 80%);
+  margin-top: 30px;
+  margin: auto;
+  text-align: center;
+  p {
+    position: absolute;
+    transform: translate(10%, -50%);
+  }
+}
 #submit {
   position: absolute;
   top: 100%;

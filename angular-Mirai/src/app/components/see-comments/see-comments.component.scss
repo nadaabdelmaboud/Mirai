@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  background-image: linear-gradient(to right, #000000, #434343);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Style the side navigation */
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  border: none;
+  left: 0;
+  box-shadow: inset 0 -3em 3em rgba(223, 208, 208, 0.1),
+    0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(206, 174, 174, 0.3);
+  background-image: linear-gradient(#3c3b3f, #605c3c);
+  overflow-x: hidden;
+}
+
+/* Side navigation links */
+.sidenav a {
+  margin-top: 20px;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.5s ease-out;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the content */
+.content {
+  margin-left: 600px;
+  margin-top: 100px;
+  padding-left: 20px;
+}
+.allpost {
+  position: relative;
+  min-height: 90vh;
+  width: 70%;
+  box-shadow: inset 0 -3em 3em rgba(223, 208, 208, 0.1),
+    0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(206, 174, 174, 0.3);
+  background-image: linear-gradient(#3c3b3f, #605c3c);
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: none;
+  display: block;
+
+  left: 0px;
+  transform: translate(-5%);
+  float: left;
+}
+.postcard {
+  position: absolute;
+  border: none;
+  display: block;
+  left: 0px;
+  float: left;
+  width: 100%;
+  height: 60%;
+  .post {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    .postImage {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      float: left;
+      display: inline-block;
+      img {
+        left: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        float: left;
+      }
+    }
+    .postText {
+      position: relative;
+      display: inline;
+      float: left;
+      margin-top: 10px;
+      left: 0;
+      width: 45%;
+      padding-right: 5px;
+      height: 100%;
+      color: white;
+      p {
+        overflow-wrap: break-word;
+        position: absolute;
+        margin-left: 5px;
+        overflow-y: auto;
+        padding-right: 20px;
+        font-weight: 100px;
+
+        text-align: justify;
+        font-size: 25px;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+.active {
+  background-color: #ddd;
+  color: black;
+}
+.commentSection {
+  position: absolute;
+  width: 95%;
+  height: 40%;
+  margin-left: 8px;
+  top: 50%;
+  display: block;
+  overflow-y: auto;
+  .commentcard {
+    box-shadow: inset 0 -3em 3em rgba(223, 208, 208, 0.1),
+      0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(206, 174, 174, 0.3);
+    background-image: linear-gradient(#3e5151, #decba4);
+    display: block;
+    border: 3px rgba(206, 174, 174, 0.3);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    left: 20px;
+    max-zoom: 0.3;
+    .cardImage {
+      display: inline-block;
+      img {
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        max-zoom: 0.3;
+        display: inline;
+      }
+      label {
+        color: black;
+        font-size: 20px;
+        font-family: serif;
+        font-weight: 300;
+        display: inline;
+      }
+    }
+    .commentText {
+      margin-left: 5px;
+      display: block;
+    }
+  }
+}

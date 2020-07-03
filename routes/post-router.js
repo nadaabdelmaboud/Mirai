@@ -34,5 +34,19 @@ router.put("/me/post", auth, async (req, res) => {
   if (edit) return res.status(200).send({ success: true });
   else return res.status(400).send({ success: false });
 });
-
+// user add comment
+router.post("/me/comment", auth, async (req, res) => {
+  blogName = req.body.blogName;
+  index = req.body.index;
+  commentText = req.body.commentText;
+  userId = req.user._id;
+  let createdComment = await Post.createComment(
+    userId,
+    blogName,
+    index,
+    commentText
+  );
+  if (createdComment) return res.status(200).send({ success: true });
+  else return res.status(400).send({ success: false });
+});
 module.exports = router;

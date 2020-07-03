@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
   password = req.body.password;
   let user = await User.checkLogin(password, email);
   if (!user) {
-    return res.status(400).send({ success: false });
+    return res.status(200).send({ success: false });
   }
   let token = await jwt.sign({ _id: user._id }, process.env.jwtsecret, {
     expiresIn: "12312432424234",
@@ -32,6 +32,18 @@ router.put("/me/profile", auth, async (req, res) => {
   let newUser = await User.updateUser(userId, user);
   if (newUser) return res.status(200).send({ success: true });
   else return res.status(400).send({ success: false });
+});
+router.post("/me/checkMail", async (req, res) => {
+  let email = req.body.email;
+  let check = await User.checkMail(email);
+  if (check) return res.status(200).send({ success: true });
+  else return res.status(200).send({ success: false });
+});
+router.post("/me/checkBlog", async (req, res) => {
+  let blogName = req.body.blogName;
+  let check = await User.checkBlog(blogName);
+  if (check) return res.status(200).send({ success: true });
+  else return res.status(200).send({ success: false });
 });
 router.post("/me/profileImage", auth, async (req, res) => {
   let imageId = req.query.imageId;

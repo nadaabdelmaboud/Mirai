@@ -22,7 +22,7 @@ export class BlogService {
     };
     return this.http.get('http://localhost:3000/api/me/blog', httpOptions);
   }
-  comment(commentText, blogName) {
+  comment(commentText, blogName, index) {
     this.authToken = localStorage.getItem('token');
     const httpOptions = {
       headers: new HttpHeaders({
@@ -32,7 +32,7 @@ export class BlogService {
     };
     return this.http.post(
       'http://localhost:3000/api/me/comment',
-      { commentText: commentText, blogName: blogName },
+      { commentText: commentText, blogName: blogName, index: index },
       httpOptions
     );
   }

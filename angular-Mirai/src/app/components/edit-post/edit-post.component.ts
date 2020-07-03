@@ -37,6 +37,12 @@ export class EditPostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('aoo')) {
+      localStorage.setItem('aoo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('aoo');
+    }
     this.URL = 'http://localhost:3000/api/me/image?id=';
     this.BlogService.getMyBlog().subscribe((data) => {
       this.blog = data;

@@ -95,13 +95,13 @@ body {
     textarea {
       box-shadow: inset 0 -3em 3em rgba(223, 208, 208, 0.1),
         0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(206, 174, 174, 0.3);
+      background-image: linear-gradient(#3e5151, #decba4);
       position: absolute;
       width: 90%;
       height: 80%;
       font-size: 20px;
       font-weight: 200;
       text-indent: 10px;
-      background-image: linear-gradient(#3e5151, #decba4);
       border: 3px gray solid;
       display: block;
       margin: 10px;

@@ -46,13 +46,16 @@
   <div class="field">
     <div class="overlay"></div>
     <label>Email</label>
-    <input type="text" name="email" [(ngModel)]="email" />
+    <input dir="auto" type="text" name="email" [(ngModel)]="email" />
   </div>
   <div class="field">
     <div class="overlay"></div>
     <label>Password</label>
-    <input type="password" name="password" [(ngModel)]="password" />
+    <input dir="auto" type="password" name="password" [(ngModel)]="password" />
   </div>
 
   <input id="submit" type="submit" value="Login" />
 </form>
+<div *ngIf="iserror" class="error">
+  <p>{{ error }}</p>
+</div>

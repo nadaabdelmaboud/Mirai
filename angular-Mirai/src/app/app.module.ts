@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { ValidationService } from './services/validation.service';
@@ -20,7 +19,6 @@ import { SeeCommentsComponent } from './components/see-comments/see-comments.com
   declarations: [
     AppComponent,
     RegisterComponent,
-    NavbarComponent,
     HomeComponent,
     LoginComponent,
     BlogComponent,

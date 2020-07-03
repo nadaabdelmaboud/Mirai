@@ -12,10 +12,22 @@ const User = {
       email: email,
       password: password,
       posts: [],
+      coverImage: process.env.image,
+      profileImage: process.env.image,
       createdAt: Date.now(),
     });
     await newUser.save();
     return newUser;
+  },
+  checkBlog: async function (blogName) {
+    let user = await UserModel.findOne({ blogName: blogName });
+    if (!user) return true;
+    return false;
+  },
+  checkMail: async function (email) {
+    let user = await UserModel.findOne({ email: email });
+    if (!user) return true;
+    return false;
   },
   checkLogin: async function (password, email) {
     let user = await UserModel.findOne({ email: email });
@@ -51,6 +63,11 @@ const User = {
     };
     return user;
   },
+  getUserBlog: async function (blogName) {
+    let user = await UserModel.findOne({ blogName: blogName });
+    if (!user) return false;
+    return user;
+  },
   getMe: async function (userId) {
     let user = await UserModel.findById(userId);
     if (!user) return false;
@@ -68,7 +85,11 @@ const User = {
     let usero = await UserModel.findById(userId);
     if (!usero) return false;
     if (user.userName) usero.userName = user.userName;
-    if (user.blogName) usero.blogName = user.blogName;
+    if (user.password) {
+      const salt = await bcrypt.genSalt(10);
+      hashed = await bcrypt.hash(user.password, salt);
+      usero.password = hashed;
+    }
     if (user.coverImage && ObjectId.isValid(user.coverImage))
       usero.coverImage = user.coverImage;
     if (user.profileImage && ObjectId.isValid(user.profileImage))

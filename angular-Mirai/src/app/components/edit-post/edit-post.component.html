@@ -59,10 +59,11 @@
           name="comment"
           id="comment"
           rows="10"
+          dir="auto"
           tabindex="4"
           required="required"
-          value="{{ posts[indecies[i]].postText }}"
-          [(ngModel)]="newPosts[indecies[i]].postText"
+          value="{{ posts[indecies.length - indecies[i] - 1].postText }}"
+          [(ngModel)]="newPosts[indecies.length - indecies[i] - 1].postText"
         ></textarea>
         <br />
         <input
@@ -71,24 +72,29 @@
           width="30px"
           id="file"
           class="custom-file-input"
-          (change)="handleInput($event.target.files, indecies[i])"
+          (change)="
+            handleInput($event.target.files, indecies.length - indecies[i] - 1)
+          "
         />
         <input
-          [ngStyle]="styles[indecies[i]]"
+          [ngStyle]="styles[indecies.length - indecies[i] - 1]"
           type="button"
           value="Clear Image"
           id="clear"
-          (click)="clearImage(indecies[i])"
+          (click)="clearImage(indecies.length - indecies[i] - 1)"
         />
       </form>
       <input
         id="submit"
         type="submit"
         value="EDIT"
-        (click)="editPost(indecies[i])"
+        (click)="editPost(indecies.length - indecies[i] - 1)"
       />
-      <div [ngStyle]="styles[indecies[i]]" class="postImage">
-        <img src="{{ posts[indecies[i]].imageId }}" />
+      <div
+        [ngStyle]="styles[indecies.length - indecies[i] - 1]"
+        class="postImage"
+      >
+        <img src="{{ posts[indecies.length - indecies[i] - 1].imageId }}" />
       </div>
     </div>
   </div>
