@@ -5,9 +5,10 @@ const crypto = require("crypto");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const bodyparser = require("body-parser");
+const config = require("../config/env");
 const methodOverRide = require("method-override");
 var storage = new GridFsStorage({
-  url: process.env.CONNECTION_STRING,
+  url: config.CONNECTION_STRING,
   file: (req, file) => {
     console.log(file);
     return new Promise((resolve, reject) => {

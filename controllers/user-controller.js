@@ -1,7 +1,7 @@
 const UserModel = require("../models/user-model");
 const bcrypt = require("bcryptjs");
 const ObjectId = require("mongoose").Types.ObjectId;
-
+const config = require("../config/env");
 const User = {
   createUser: async function (userName, blogName, password, email) {
     const salt = await bcrypt.genSalt(10);
@@ -12,8 +12,8 @@ const User = {
       email: email,
       password: password,
       posts: [],
-      coverImage: process.env.image,
-      profileImage: process.env.image,
+      coverImage: config.image,
+      profileImage: config.image,
       createdAt: Date.now(),
     });
     await newUser.save();

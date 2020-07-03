@@ -4,11 +4,12 @@ const multer = require("multer");
 const crypto = require("crypto");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
+const config = require("../config/env");
 mongoose.Promise = global.Promise;
 global.gfs = undefined;
 function dbConnection() {
-  if (process.env.CONNECTION_STRING) {
-    mongoose.connect(String(process.env.CONNECTION_STRING), {
+  if (config.CONNECTION_STRING) {
+    mongoose.connect(String(config.CONNECTION_STRING), {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
@@ -17,7 +18,7 @@ function dbConnection() {
       .once("open", () => {
         gfs = Grid(mongoose.connection.db, mongoose.mongo);
         gfs.collection("images");
-        console.log("connection is made   ", process.env.CONNECTION_STRING);
+        console.log("connection is made   ", config.CONNECTION_STRING);
       })
       .on("error", function (error) {
         console.log("connection got error : ", error);

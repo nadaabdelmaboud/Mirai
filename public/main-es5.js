@@ -2321,7 +2321,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.ProfileService.postFile(this.fileToUpload).subscribe(function (data) {
             _this10.imageSrc = data;
-            _this10.URL = 'http://localhost:3000/api/me/image?id=';
+            _this10.URL = '/api/me/image?id=';
             _this10.imageId = _this10.imageSrc.imageId;
             _this10.imageSrc = _this10.URL + _this10.imageSrc.imageId;
           }, function (error) {

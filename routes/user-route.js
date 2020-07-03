@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const auth = require("../middlewares/auth");
 const bcrypt = require("bcryptjs");
+const config = require("../config/env");
 const User = require("../controllers/user-controller");
 const jwt = require("jsonwebtoken");
 // user sign up
@@ -21,7 +22,7 @@ router.post("/login", async (req, res) => {
   if (!user) {
     return res.status(200).send({ success: false });
   }
-  let token = await jwt.sign({ _id: user._id }, process.env.jwtsecret, {
+  let token = await jwt.sign({ _id: user._id }, config.jwtsecret, {
     expiresIn: "12312432424234",
   });
   return res.status(200).send({ success: true, token: token, user: user });
