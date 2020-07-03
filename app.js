@@ -16,7 +16,12 @@ app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(logger("dev"));
-app.use(express.static(path.join(__dirname, "public")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "public")));
+}
+app.get("*", (request, response) => {
+  response.sendFile(path.join(__dirname, "public", "index.html"));
+});
 app.use(methodOverride());
 
 app.use("/api", user);
