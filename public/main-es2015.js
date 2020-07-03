@@ -1088,6 +1088,13 @@ class LoginComponent {
         this.ValidationService = ValidationService;
     }
     ngOnInit() {
+        if (!localStorage.getItem('woo')) {
+            localStorage.setItem('woo', 'no reload');
+            location.reload();
+        }
+        else {
+            localStorage.removeItem('woo');
+        }
         this.email = '';
         this.password = '';
         this.error = '';
@@ -1378,6 +1385,13 @@ class RegisterComponent {
         this.ValidationService = ValidationService;
     }
     ngOnInit() {
+        if (!localStorage.getItem('roo')) {
+            localStorage.setItem('roo', 'no reload');
+            location.reload();
+        }
+        else {
+            localStorage.removeItem('roo');
+        }
         this.iserror = false;
         this.error = '';
         this.userName = '';

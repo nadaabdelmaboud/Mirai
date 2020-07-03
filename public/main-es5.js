@@ -2063,6 +2063,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoginComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          if (!localStorage.getItem('woo')) {
+            localStorage.setItem('woo', 'no reload');
+            location.reload();
+          } else {
+            localStorage.removeItem('woo');
+          }
+
           this.email = '';
           this.password = '';
           this.error = '';
@@ -2624,6 +2631,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(RegisterComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          if (!localStorage.getItem('roo')) {
+            localStorage.setItem('roo', 'no reload');
+            location.reload();
+          } else {
+            localStorage.removeItem('roo');
+          }
+
           this.iserror = false;
           this.error = '';
           this.userName = '';

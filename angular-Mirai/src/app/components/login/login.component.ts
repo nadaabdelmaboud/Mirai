@@ -23,6 +23,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('woo')) {
+      localStorage.setItem('woo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('woo');
+    }
     this.email = '';
     this.password = '';
     this.error = '';

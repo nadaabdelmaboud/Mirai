@@ -24,6 +24,12 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('roo')) {
+      localStorage.setItem('roo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('roo');
+    }
     this.iserror = false;
     this.error = '';
     this.userName = '';
