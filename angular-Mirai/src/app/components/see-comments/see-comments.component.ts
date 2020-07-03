@@ -36,13 +36,13 @@ export class SeeCommentsComponent implements OnInit {
     } else {
       localStorage.removeItem('loo');
     }
-    this.URL = '/api/me/image?id=';
+    this.URL = 'http://localhost:8080/api/me/image?id=';
     this.BlogService.getMyBlog().subscribe((data) => {
       this.blog = data;
       console.log(this.blog);
       if (this.blog.success) {
         this.blog = this.blog.blog;
-        this.URL = '/api/me/image?id=';
+        this.URL = 'http://localhost:8080/api/me/image?id=';
         this.posts = this.blog.posts;
         this.styles = [];
         this.indecies = [];
@@ -62,7 +62,8 @@ export class SeeCommentsComponent implements OnInit {
             this.posts[i].comments[j].commentter.profileImage =
               this.URL + this.posts[i].comments[j].commentter.profileImage;
           }
-          this.posts[i].imageId = '/api/me/image?id=' + this.posts[i].imageId;
+          this.posts[i].imageId =
+            'http://localhost:8080/api/me/image?id=' + this.posts[i].imageId;
           if (!this.posts[i].isImage) {
             this.styles.push({
               image: { display: 'none' },

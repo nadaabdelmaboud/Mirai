@@ -10,7 +10,7 @@ export class BlogService {
   constructor(private http: HttpClient) {}
   getUserBlog(blogName) {
     this.blogName = blogName;
-    return this.http.get('/api/' + blogName);
+    return this.http.get('http://localhost:8080/api/' + blogName);
   }
   getMyBlog() {
     this.authToken = localStorage.getItem('token');
@@ -20,7 +20,7 @@ export class BlogService {
         Authorization: this.authToken,
       }),
     };
-    return this.http.get('/api/me/blog', httpOptions);
+    return this.http.get('http://localhost:8080/api/me/blog', httpOptions);
   }
   comment(commentText, blogName, index) {
     this.authToken = localStorage.getItem('token');
@@ -31,7 +31,7 @@ export class BlogService {
       }),
     };
     return this.http.post(
-      '/api/me/comment',
+      'http://localhost:8080/api/me/comment',
       { commentText: commentText, blogName: blogName, index: index },
       httpOptions
     );

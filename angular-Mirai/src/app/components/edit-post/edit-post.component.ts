@@ -43,20 +43,21 @@ export class EditPostComponent implements OnInit {
     } else {
       localStorage.removeItem('aoo');
     }
-    this.URL = '/api/me/image?id=';
+    this.URL = 'http://localhost:8080/api/me/image?id=';
     this.BlogService.getMyBlog().subscribe((data) => {
       this.blog = data;
       console.log(this.blog);
       if (this.blog.success) {
         this.blog = this.blog.blog;
-        this.URL = '/api/me/image?id=';
+        this.URL = 'http://localhost:8080/api/me/image?id=';
         this.posts = this.blog.posts;
         this.styles = [];
         this.newPosts = this.blog.posts;
         this.indecies = [];
         for (var i = 0; i < this.posts.length; i++) {
           this.imageIds.push(this.posts[i].imageId);
-          this.posts[i].imageId = '/api/me/image?id=' + this.posts[i].imageId;
+          this.posts[i].imageId =
+            'http://localhost:8080/api/me/image?id=' + this.posts[i].imageId;
           if (!this.posts[i].isImage) {
             this.styles.push({ display: 'none' });
           } else {
@@ -107,7 +108,7 @@ export class EditPostComponent implements OnInit {
       (data) => {
         this.styles[index].display = 'inline';
         this.imageSrc = data;
-        this.URL = '/api/me/image?id=';
+        this.URL = 'http://localhost:8080/api/me/image?id=';
         this.posts[index].imageId = this.URL + this.imageSrc.imageId;
         console.log(this.posts[index].imageId);
         this.newPosts[index].imageId = this.URL + this.imageSrc.imageId;

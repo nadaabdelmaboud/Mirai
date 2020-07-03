@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
     this.ProfileService.postFile(this.fileToUpload).subscribe(
       (data) => {
         this.imageSrc = data;
-        this.URL = '/api/me/image?id=';
+        this.URL = 'http://localhost:8080/api/me/image?id=';
         this.imageId = this.imageSrc.imageId;
         this.imageSrc = this.URL + this.imageSrc.imageId;
       },

@@ -11,7 +11,7 @@ export class AuthService {
   user: any;
   constructor(private http: HttpClient) {}
   userRegister(user) {
-    return this.http.post('/api/register', user);
+    return this.http.post('http://localhost:8080/api/register', user);
   }
   userBlogName() {
     this.getLocalStorage();
@@ -21,10 +21,13 @@ export class AuthService {
         Authorization: this.authToken,
       }),
     };
-    return this.http.get('/api/user/blogname', httpOptions);
+    return this.http.get(
+      'http://localhost:8080/api/user/blogname',
+      httpOptions
+    );
   }
   userLogin(user) {
-    return this.http.post('/api/login', user);
+    return this.http.post('http://localhost:8080/api/login', user);
   }
   setLocalStorage(token, user) {
     localStorage.clear();

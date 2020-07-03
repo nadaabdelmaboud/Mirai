@@ -14,7 +14,7 @@ export class ProfileService {
         Authorization: this.authToken,
       }),
     };
-    const endpoint = '/api/me/uploadImage';
+    const endpoint = 'http://localhost:8080/api/me/uploadImage';
     const formData: FormData = new FormData();
     formData.set('file', fileToUpload);
     console.log(formData);
@@ -30,7 +30,7 @@ export class ProfileService {
       }),
     };
     return this.httpClient.put(
-      '/api/me/post',
+      'http://localhost:8080/api/me/post',
       { newPost: newPost, index: index },
       httpOptions
     );
@@ -43,7 +43,11 @@ export class ProfileService {
         Authorization: this.authToken,
       }),
     };
-    return this.httpClient.put('/api/me/profile', { user: user }, httpOptions);
+    return this.httpClient.put(
+      'http://localhost:8080/api/me/profile',
+      { user: user },
+      httpOptions
+    );
   }
   getMe() {
     this.authToken = localStorage.getItem('token');
@@ -53,7 +57,10 @@ export class ProfileService {
         Authorization: this.authToken,
       }),
     };
-    return this.httpClient.get('/api/me/profile', httpOptions);
+    return this.httpClient.get(
+      'http://localhost:8080/api/me/profile',
+      httpOptions
+    );
   }
   createPost(newPost) {
     this.authToken = localStorage.getItem('token');
@@ -64,7 +71,7 @@ export class ProfileService {
       }),
     };
     return this.httpClient.post(
-      '/api/me/post',
+      'http://localhost:8080/api/me/post',
       { newPost: newPost },
       httpOptions
     );
