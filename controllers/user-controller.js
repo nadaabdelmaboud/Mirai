@@ -35,7 +35,7 @@ const User = {
     if (!user) return false;
     checkPass = await bcrypt.compare(password, user.password);
     if (!checkPass) return false;
-    return user;
+    return user._id;
   },
   uploadProfileImage: async function (userId, imageId) {
     let user = await UserModel.findById(userId);

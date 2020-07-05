@@ -7,6 +7,7 @@ const User = new Schema({
   password: String,
   country: String,
   birthDate: Date,
+  socketId: String,
   coverImage: mongoose.Schema.Types.ObjectId,
   about: String,
   gender: String,

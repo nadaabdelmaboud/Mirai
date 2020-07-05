@@ -3,7 +3,8 @@ import { ViewEncapsulation } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
+import { SocketService } from '../../services/socket.service';
+import * as io from 'socket.io-client';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'app-blog',
@@ -29,7 +30,8 @@ export class BlogComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private BlogService: BlogService,
     private AuthService: AuthService,
-    private router: Router
+    private router: Router,
+    private SocketService: SocketService
   ) {}
 
   ngOnInit(): void {
@@ -78,12 +80,15 @@ export class BlogComponent implements OnInit {
       height: '100%',
     };
   }
+
   comment(i) {
     let checkAuth = this.AuthService.isLogged();
     console.log(checkAuth);
     i = this.posts.length - i - 1;
     if (checkAuth) {
       this.commentText = this.comments[i];
+      let user = localStorage.getItem('user');
+      this.SocketService.comment(this.commentText, this.blogName, i, user);
       this.BlogService.comment(this.commentText, this.blogName, i).subscribe(
         (data) => {
           let ch: any;

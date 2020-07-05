@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   email: String;
   password: String;
   login: any;
+  userId: String;
   iserror: any;
   error: any;
   constructor(
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     this.error = '';
     this.iserror = false;
   }
+
   LoginUser() {
     let valid = this.ValidationService.validateLogin(this.email, this.password);
     if (valid.success) {

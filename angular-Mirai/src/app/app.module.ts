@@ -15,6 +15,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SeeCommentsComponent } from './components/see-comments/see-comments.component';
+import { SocketService } from './services/socket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,7 @@ import { SeeCommentsComponent } from './components/see-comments/see-comments.com
     SeeCommentsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [AuthService, ValidationService, AuthGuard],
+  providers: [AuthService, ValidationService, AuthGuard, SocketService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

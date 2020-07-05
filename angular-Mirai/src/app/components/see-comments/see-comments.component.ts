@@ -3,6 +3,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { BlogService } from '../../services/blog.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -26,8 +27,40 @@ export class SeeCommentsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private BlogService: BlogService,
     private AuthService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private SocketService: SocketService
+  ) {
+    this.SocketService.recieveComment().subscribe((data) => {
+      let post = document.getElementsByClassName('allpost');
+      let comment = document.createElement('div');
+      comment.classList.add('commentcard');
+      let cardImage = document.createElement('div');
+      cardImage.classList.add('cardImage');
+      let image = document.createElement('img');
+      let label1 = document.createElement('label');
+      let label2 = document.createElement('label');
+      label2.style.fontSize = 'smaller';
+      label2.style.marginLeft = '10px';
+      image.src =
+        'http://localhost:8080/api/me/image?id=' + data.commentterImage;
+      label1.innerText = data.commentterName;
+      label2.innerText = data.date;
+      cardImage.classList.add('cardImage');
+      cardImage.appendChild(image);
+      cardImage.appendChild(label1);
+      cardImage.appendChild(label2);
+      comment.appendChild(cardImage);
+      let commentText = document.createElement('div');
+      commentText.classList.add('commentText');
+      let p = document.createElement('p');
+      p.innerText = data.commentText;
+      commentText.appendChild(p);
+      comment.appendChild(commentText);
+      post[data.postIndex]
+        .querySelector('.commentSection')
+        .appendChild(comment);
+    });
+  }
 
   ngOnInit(): void {
     if (!localStorage.getItem('loo')) {
@@ -36,6 +69,7 @@ export class SeeCommentsComponent implements OnInit {
     } else {
       localStorage.removeItem('loo');
     }
+
     this.URL = 'http://localhost:8080/api/me/image?id=';
     this.BlogService.getMyBlog().subscribe((data) => {
       this.blog = data;

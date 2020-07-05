@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { SocketService } from '../../services/socket.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,11 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   blogname: any;
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private SocketService: SocketService
+  ) {}
 
   ngOnInit(): void {
     if (!localStorage.getItem('qoo')) {
@@ -38,6 +43,8 @@ export class HomeComponent implements OnInit {
     });
   }
   Logout() {
+    let user = localStorage.getItem('user');
+    this.SocketService.disconnectSocket(user);
     this.authService.logout();
   }
 }
