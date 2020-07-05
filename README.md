@@ -1,5 +1,6 @@
 # Mirai
-## Blog - Mean stack
+## Blog - MEAN stack
+
 ### Mirai is a simple blog application with Authentication/Authorization with some features like creating posts - editing posts - real time comments with socket.io - editing personal info
 ### viewing blog page needs no auth so users could share their blogs
 
